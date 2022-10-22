@@ -1,0 +1,191 @@
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: url(fig/sky.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+#bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background: rgb(27, 27, 27);
+}
+
+#bg.clicked {
+  animation: hide 0ms forwards;
+  animation-delay: 1s;
+}
+
+#appbg {
+  position: absolute;
+}
+
+#appbg.hovered {
+  animation: circlein 1s;
+  animation-fill-mode: forwards;
+  background: url(fig/sky.jpg);
+  border-radius: 50%;
+}
+
+#appbg.hoverout {
+  animation: circleout 1s;
+  animation-fill-mode: forwards;
+  background: url(fig/sky.jpg);
+  border-radius: 50%;
+}
+
+#appbg.clicked {
+  animation: total 1s;
+  animation-fill-mode: forwards;
+  background: url(fig/sky.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.panel {
+  display: flex;
+}
+
+#social {
+ opacity: 0;
+}
+
+#social.show {
+  animation: fadein 0.5s forwards;
+  animation-delay: 0.5s;
+  opacity: 0;
+  position: absolute;
+  bottom: 100px;
+  display: flex;
+  z-index: 1;
+}
+
+ul {
+  list-style: none;
+  margin: auto;
+}
+
+li {
+  display: inline-block;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.favicon {
+  width: 3em;
+}
+
+.favicon:hover {
+  filter: invert(150%) drop-shadow(3px 3px 2px black);
+}
+
+h1 {
+  margin: 0;
+}
+
+@keyframes hide {
+  100% {
+    background: rgba(206, 68, 68, 0);
+  }
+}
+
+@keyframes circlein {
+  0% {
+    width: 0px;
+    height: 0px;
+    opacity: 1;
+  }
+
+  100% {
+    width: 60vh;
+    height: 60vh;
+    opacity: 1;
+    border-radius: 50%;
+  }
+}
+
+@keyframes circleout {
+  0% {
+    width: 60vh;
+    height: 60vh;
+    opacity: 1;
+  }
+
+  100% {
+    width: 0px;
+    height: 0px;
+    opacity: 1;
+  }
+}
+
+@keyframes total {
+  0% {
+    width: 60vh;
+    height: 60vh;
+    opacity: 1;
+    border-radius: 50%;
+  }
+
+  99% {
+    width: 100%;
+    height: 100%;
+  }
+
+  100% {
+    display: none;
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#title {
+  z-index: 1;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#title h1 {
+  font-family: "Permanent Marker", cursive;
+  font-size: 25vh;
+  transform: rotate(-10deg);
+  color: white;
+  transition: color 1s;
+  position: absolute;
+}
+
+#title h1:hover {
+  cursor: pointer;
+}
