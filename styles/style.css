@@ -1,4 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+:root {
+  --gray: rgb(27, 27, 27);
+  --bg-image: url(fig/sky.jpg);
+}
 
 body,
 html {
@@ -11,10 +18,58 @@ html {
 }
 
 body {
-  background: url(fig/sky.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-image: var(--bg-image);
   background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+h1 {
+  margin: 0;
+  font-family: "Permanent Marker", cursive;
+  text-align: center;
+}
+
+h2 {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
+  text-decoration: underline wavy ;
+  font-size: 1.25em;
+  margin: 12px 0px;
+}
+
+p {
+  font-family: "Ubuntu", sans-serif;
+}
+
+p.less-margin {
+  margin: 8px 0px;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  margin-left: 42px;
+  margin-bottom: 16px;
+  padding: 0;
+}
+
+a {
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  font-style: italic;
+  font-weight: bold;
+  color: black;
+}
+
+em {
+  font-weight: bold;
+  font-style: normal;
+}
+
+a:hover {
+  text-shadow: 1px 1px 1px var(--gray);
 }
 
 #bg {
@@ -24,12 +79,12 @@ body {
   right: 0;
   bottom: 0;
   z-index: -1;
-  background: rgb(27, 27, 27);
+  background: var(--gray);
 }
 
 #bg.clicked {
   animation: hide 0ms forwards;
-  animation-delay: 1s;
+  animation-delay: 0.99s;
 }
 
 #appbg {
@@ -39,23 +94,56 @@ body {
 #appbg.hovered {
   animation: circlein 1s;
   animation-fill-mode: forwards;
-  background: url(fig/sky.jpg);
+  background: var(--bg-image);
+  background-position: center;
   border-radius: 50%;
 }
 
 #appbg.hoverout {
   animation: circleout 1s;
   animation-fill-mode: forwards;
-  background: url(fig/sky.jpg);
+  background: var(--bg-image);
+  background-position: center;
   border-radius: 50%;
 }
 
 #appbg.clicked {
   animation: total 1s;
   animation-fill-mode: forwards;
-  background: url(fig/sky.jpg);
+  background: var(--bg-image);
+  background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#title {
+  z-index: 1;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#title h1 {
+  font-family: "Permanent Marker", cursive;
+  font-size: 25vh;
+  transform: rotate(-10deg);
+  color: white;
+  transition: color 1s;
+  animation: fadein-up 1.5s forwards;
+  position: absolute;
+}
+
+#title h1:hover {
+  cursor: pointer;
 }
 
 .panel {
@@ -63,7 +151,7 @@ body {
 }
 
 #social {
- opacity: 0;
+  display: none;
 }
 
 #social.show {
@@ -71,17 +159,25 @@ body {
   animation-delay: 0.5s;
   opacity: 0;
   position: absolute;
-  bottom: 100px;
+  bottom: 10vh;
   display: flex;
   z-index: 1;
 }
 
-ul {
-  list-style: none;
-  margin: auto;
+#social.transup {
+  animation: fadeout-up 1s forwards;
+}
+#title1.transup {
+  animation: fadeout-up 1s forwards;
 }
 
-li {
+#social ul {
+  list-style: none;
+  margin: auto;
+  padding: 0;
+}
+
+#social ul li {
   display: inline-block;
   margin-left: 20px;
   margin-right: 20px;
@@ -89,14 +185,68 @@ li {
 
 .favicon {
   width: 3em;
+  transition: filter 0.2s;
 }
 
 .favicon:hover {
   filter: invert(150%) drop-shadow(3px 3px 2px black);
+  transition: filter 0.2s;
 }
 
-h1 {
-  margin: 0;
+.bigbox {
+  display: none;
+}
+
+#bigbox.show {
+  opacity: 0;
+  display: flex;
+  gap: 15vh;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1vh;
+  margin-bottom: 25vh;
+}
+
+.box {
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  border: 2px var(--gray) dashed;
+  background-color: whitesmoke;
+  width: 50vh;
+  height: 50vh;
+}
+
+#things {
+  justify-content: space-around;
+}
+
+#about {
+  height: fit-content;
+}
+
+.picrew {
+  border: 2px black solid;
+  float: right;
+  border-radius: 50%;
+  overflow: hidden;
+  width: 15vh;
+  height: auto;
+}
+
+#picrew {
+  display: inline;
+  width: 100%;
+}
+
+.emoji-beside {
+  display: flex;
+  gap: 10px;
+}
+
+.trans {
+  animation: fadein-moves 1s forwards;
+  animation-delay: 0.2s;
 }
 
 @keyframes hide {
@@ -161,31 +311,32 @@ h1 {
   }
 }
 
-.center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+@keyframes fadein-moves {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-#title {
-  z-index: 1;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+@keyframes fadeout-up {
+  from {
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
 }
 
-#title h1 {
-  font-family: "Permanent Marker", cursive;
-  font-size: 25vh;
-  transform: rotate(-10deg);
-  color: white;
-  transition: color 1s;
-  position: absolute;
-}
-
-#title h1:hover {
-  cursor: pointer;
+@keyframes fadein-up {
+  from {
+    opacity: 0;
+    transform: translateY(-100vh);
+  }
+  to {
+    opacity: 1;
+  }
 }
