@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
 
 :root {
   --gray: rgb(27, 27, 27);
@@ -32,9 +32,9 @@ h1 {
 }
 
 h2 {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: bold;
-  text-decoration: underline wavy ;
+  text-decoration: underline wavy;
   font-size: 1.25em;
   margin: 12px 0px;
 }
@@ -142,6 +142,13 @@ a:hover {
   position: absolute;
 }
 
+#title1.black {
+  color: black;
+}
+#title1.white {
+  color: white;
+}
+
 #title h1:hover {
   cursor: pointer;
 }
@@ -193,6 +200,32 @@ a:hover {
   transition: filter 0.2s;
 }
 
+#scrollers {
+  display: none;
+}
+
+#scrollers.show {
+  opacity: 0;
+  animation: fade-almost-in 1s forwards;
+  animation-delay: 3s;
+  display: block;
+}
+
+#scrollers.transup {
+  animation: fadeout-up 1s forwards;
+  animation-delay: 1s;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.scroll-indicator:last-child {
+  left: 10px;
+}
+
 .bigbox {
   display: none;
 }
@@ -231,6 +264,7 @@ a:hover {
   border-radius: 50%;
   overflow: hidden;
   width: 15vh;
+  height: 15vh;
   height: auto;
 }
 
@@ -242,6 +276,23 @@ a:hover {
 .emoji-beside {
   display: flex;
   gap: 10px;
+}
+
+footer {
+  display: none;
+}
+
+footer.show {
+  display: flex;
+  justify-content: center;
+}
+
+footer p {
+  margin: 0;
+  margin-bottom: 10px;
+  font-size: 0.75em;
+  color: var(--gray);
+  opacity: 75%;
 }
 
 .trans {
@@ -311,6 +362,15 @@ a:hover {
   }
 }
 
+@keyframes fade-almost-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.75;
+  }
+}
+
 @keyframes fadein-moves {
   from {
     opacity: 0;
@@ -338,5 +398,136 @@ a:hover {
   }
   to {
     opacity: 1;
+  }
+}
+
+@media screen and (max-device-width: 480px) {
+  #title {
+    z-index: 1;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #title h1 {
+    font-family: "Permanent Marker", cursive;
+    font-size: 33vw;
+    transform: rotate(-10deg);
+    color: black;
+    position: absolute;
+  }
+
+  #title h1:hover {
+    cursor: pointer;
+  }
+
+  .trans {
+    animation: none;
+  }
+
+  #bigbox.show {
+    opacity: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15vw;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1vh;
+    margin-bottom: 25vh;
+  }
+
+  .box {
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    border: 2px var(--gray) dashed;
+    background-color: whitesmoke;
+    width: 90vw;
+    height: fit-content;
+  }
+
+  .picrew {
+    width: 20vw;
+    height: 20vw;
+  }
+
+  #appbg.clicked {
+    animation: none;
+  }
+
+  #appbg.hoverout {
+    animation: none;
+  }
+
+  #bg.clicked {
+    animation: hide 0ms forwards;
+  }
+  
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  #title {
+    z-index: 1;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #title h1 {
+    font-family: "Permanent Marker", cursive;
+    font-size: 33vw;
+    transform: rotate(-10deg);
+    color: black;
+    position: absolute;
+  }
+
+  #title h1:hover {
+    cursor: pointer;
+  }
+
+  .trans {
+    animation: none;
+  }
+
+  #bigbox.show {
+    opacity: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15vw;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1vh;
+    margin-bottom: 25vh;
+  }
+
+  .box {
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    border: 2px var(--gray) dashed;
+    background-color: whitesmoke;
+    width: 90vw;
+    height: fit-content;
+  }
+
+  .picrew {
+    width: 20vw;
+    height: 20vw;
+  }
+
+  #appbg.clicked {
+    animation: none;
+  }
+
+  #appbg.hoverout {
+    animation: none;
+  }
+
+  #bg.clicked {
+    animation: hide 0ms forwards;
   }
 }
