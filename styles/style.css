@@ -209,6 +209,7 @@ em {
   animation: fade-almost-in 1s forwards;
   animation-delay: 3s;
   display: block;
+  display: none;
 }
 
 #scrollers.transup {
