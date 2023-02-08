@@ -1,9 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
-  --gray: rgb(27, 27, 27);
+  --purple-bright: #6438FF;
+  --purple-dark: #2D08B3;
+  --yellow: #FFE500;
+  --pale: #EED2CC;
+  --color: #0A8754;
   --bg-image: url(fig/sky.jpg);
 }
 
@@ -17,273 +22,90 @@ html {
   box-sizing: border-box;
 }
 
+@keyframes background-pan {
+  from {
+    background-position: 0% center;
+  }
+  
+  to {
+    background-position: -200% center;
+  }
+}
+
+@keyframes traveling-left {
+  from {
+    transform: translateX(0%);
+  }  
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes traveling-right {
+  from {
+    transform: translateX(-50%);
+  }  
+  to {
+    transform: translateX(0%);
+  }
+}
+
 body {
-  background-image: var(--bg-image);
+  animation: background-pan 10s linear infinite;
+  background: linear-gradient(to right, var(--purple-dark), var(--purple-bright), var(--purple-dark));
   background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-h1 {
-  margin: 0;
-  font-family: "Permanent Marker", cursive;
-  text-align: center;
-}
-
-h2 {
-  font-family: "Open Sans", sans-serif;
-  font-weight: bold;
-  text-decoration: underline wavy;
-  font-size: 1.25em;
-  margin: 12px 0px;
-}
-
-p {
-  font-family: "Ubuntu", sans-serif;
-}
-
-p.less-margin {
-  margin: 8px 0px;
-}
-
-ul {
-  list-style: none;
-  margin: 0;
-  margin-left: 42px;
-  margin-bottom: 16px;
-  padding: 0;
-}
-
-a {
-  text-decoration: underline;
-  text-decoration-style: dotted;
-  font-style: italic;
-  font-weight: bold;
-  color: black;
-}
-
-a:hover {
-  text-shadow: 1px 1px 1px var(--gray);
-}
-
-em {
-  font-weight: bold;
-  font-style: normal;
-}
-
-#bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: -1;
-  background: var(--gray);
-}
-
-#bg.clicked {
-  animation: hide 0ms forwards;
-  animation-delay: 0.99s;
-}
-
-#appbg {
-  position: absolute;
-}
-
-#appbg.hovered {
-  animation: circlein 1s;
-  animation-fill-mode: forwards;
-  background: var(--bg-image);
-  background-position: center;
-  border-radius: 50%;
-}
-
-#appbg.hoverout {
-  animation: circleout 1s;
-  animation-fill-mode: forwards;
-  background: var(--bg-image);
-  background-position: center;
-  border-radius: 50%;
-}
-
-#appbg.clicked {
-  animation: total 1s;
-  animation-fill-mode: forwards;
-  background: var(--bg-image);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-.center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-#title {
-  z-index: 1;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-#title h1 {
-  font-family: "Permanent Marker", cursive;
-  font-size: 25vh;
-  transform: rotate(-10deg);
-  color: white;
-  transition: color 1s;
-  animation: fadein-up 1.5s forwards;
-  position: absolute;
-}
-
-#title1.black {
-  color: black;
-}
-#title1.white {
-  color: white;
-}
-
-#title h1:hover {
-  cursor: pointer;
-}
-
-.panel {
-  display: flex;
-}
-
-#social {
-  display: none;
-}
-
-#social.show {
-  animation: fadein 0.5s forwards;
-  animation-delay: 0.5s;
-  opacity: 0;
-  position: absolute;
-  bottom: 10vh;
-  display: flex;
-  z-index: 1;
-}
-
-#social.transup {
-  animation: fadeout-up 1s forwards;
-}
-#title1.transup {
-  animation: fadeout-up 1s forwards;
-}
-
-#social ul {
-  list-style: none;
-  margin: auto;
-  padding: 0;
-}
-
-#social ul li {
-  display: inline-block;
-  margin-left: 20px;
-  margin-right: 20px;
-}
-
-.favicon {
-  width: 3em;
-  transition: filter 0.2s;
-}
-
-.favicon:hover {
-  filter: invert(150%) drop-shadow(3px 3px 2px black);
-  transition: filter 0.2s;
-}
-
-#scrollers {
-  display: none;
-}
-
-#scrollers.show {
-  opacity: 0;
-  animation: fade-almost-in 1s forwards;
-  animation-delay: 3s;
-  display: block;
-  display: none;
-}
-
-#scrollers.transup {
-  animation: fadeout-up 1s forwards;
-  animation-delay: 1s;
-}
-
-.scroll-indicator {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-}
-
-.scroll-indicator:last-child {
-  left: 10px;
-}
-
-.bigbox {
-  display: none;
-}
-
-#bigbox.show {
-  opacity: 0;
-  display: flex;
-  gap: 15vh;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1vh;
-  margin-bottom: 25vh;
-}
-
-.box {
-  display: flex;
-  padding: 20px;
-  flex-direction: column;
-  border: 2px var(--gray) dashed;
-  background-color: whitesmoke;
-  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
-  width: 50vh;
-}
-
-#things {
-  justify-content: space-around;
-}
-
-#about {
-  height: fit-content;
-}
-
-.picrew {
-  border: 2px black solid;
-  float: right;
-  border-radius: 50%;
   overflow: hidden;
-  width: 15vh;
-  height: 15vh;
-  height: auto;
+  background-size: 200%;
 }
 
-#picrew {
-  display: inline;
-  width: 100%;
-}
-
-.emoji-beside {
+#wrapper {
   display: flex;
-  gap: 10px;
+  flex-direction: column;
+  justify-content: space-between;
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  top: 10px;
+  bottom: 10px;
+  border: 5px var(--yellow) solid;
+  border-radius: 10px;
+  
+}
+
+.names {
+  max-width: 100%;
+  height: fit-content;
+  overflow: hidden;
+}
+
+.names:first-child{
+  margin-top: 3px;
+}
+
+.marquee {
+  font-family: 'Raleway', Arial, Helvetica, sans-serif;
+  color: var(--yellow);
+  font-weight: 900;
+  font-style: italic;
+  font-size: 2rem;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+}
+
+#names-header{
+  animation: traveling-left 120s linear infinite;
+}
+
+#names-footer{
+  animation: traveling-right 120s linear infinite;
+}
+
+.marquee span {
+  display: inline-block;
 }
 
 footer {
-  display: none;
-}
-
-footer.show {
   display: flex;
   justify-content: center;
 }
@@ -296,174 +118,9 @@ footer p {
   opacity: 75%;
 }
 
-.trans {
-  animation: fadein-moves 1s forwards;
-  animation-delay: 0.2s;
-}
 
-@keyframes hide {
-  100% {
-    background: rgba(206, 68, 68, 0);
-  }
-}
-
-@keyframes circlein {
-  0% {
-    width: 0px;
-    height: 0px;
-    opacity: 1;
-  }
-
-  100% {
-    width: 60vh;
-    height: 60vh;
-    opacity: 1;
-    border-radius: 50%;
-  }
-}
-
-@keyframes circleout {
-  0% {
-    width: 60vh;
-    height: 60vh;
-    opacity: 1;
-  }
-
-  100% {
-    width: 0px;
-    height: 0px;
-    opacity: 1;
-  }
-}
-
-@keyframes total {
-  0% {
-    width: 60vh;
-    height: 60vh;
-    opacity: 1;
-    border-radius: 50%;
-  }
-
-  99% {
-    width: 100%;
-    height: 100%;
-  }
-
-  100% {
-    display: none;
-  }
-}
-
-@keyframes fadein {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fade-almost-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 0.75;
-  }
-}
-
-@keyframes fadein-moves {
-  from {
-    opacity: 0;
-    transform: translateY(100px);
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeout-up {
-  from {
-    opacity: 1;
-  }
-  to {
-    transform: translateY(-100vh);
-    opacity: 0;
-  }
-}
-
-@keyframes fadein-up {
-  from {
-    opacity: 0;
-    transform: translateY(-100vh);
-  }
-  to {
-    opacity: 1;
-  }
-}
 
 @media screen and (max-device-width: 480px),
   (min-width: 768px) and (max-width: 1024px) {
-  #title {
-    z-index: 1;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
 
-  #title h1 {
-    font-family: "Permanent Marker", cursive;
-    font-size: 33vw;
-    transform: rotate(-10deg);
-    color: black;
-    position: absolute;
-  }
-
-  #title h1:hover {
-    cursor: pointer;
-  }
-
-  .trans {
-    animation: none;
-  }
-
-  #bigbox.show {
-    opacity: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 15vw;
-    justify-content: center;
-    align-items: center;
-    margin-top: 1vh;
-    margin-bottom: 25vh;
-  }
-
-  .box {
-    display: flex;
-    padding: 20px;
-    flex-direction: column;
-    border: 2px var(--gray) dashed;
-    background-color: whitesmoke;
-    width: 90vw;
-    height: fit-content;
-  }
-
-  .picrew {
-    width: 20vw;
-    height: 20vw;
-  }
-
-  #appbg.clicked {
-    animation: none;
-  }
-
-  #appbg.hoverout {
-    animation: none;
-  }
-
-  #bg.clicked {
-    animation: hide 0ms forwards;
-  }
 }
