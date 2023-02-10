@@ -1,73 +1,58 @@
-var title = document.getElementById("title1");
-var appbg = document.getElementById("appbg");
-var social = document.getElementById("social");
-var bg = document.getElementById("bg");
-var bigbox = document.getElementById("bigbox");
-var footer = document.getElementById("footer");
-var scrollers = document.getElementById("scrollers");
-var clicked = false;
+$(document).ready(function () {
+    var supportedFlag = $.keyframe.isSupported();
+    var content = $(".content");
 
-//detects if the device is a phone or tablet in portrait mode
-if (
-  Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0) <=
-    480 ||
-  (Math.max(
-    document.documentElement.clientWidth || 0,
-    window.innerWidth || 0
-  ) >= 768 &&
-    Math.max(
-      document.documentElement.clientWidth || 0,
-      window.innerWidth || 0
-    ) < 1024)
-) {
-  appbg.className = "clicked";
-  bg.className = "clicked";
-  social.className = "show";
-  bigbox.className = "show";
-  footer.className = "show";
-  title.className = "black";
-  clicked = true;
-}
+    content.hover(
+        function () {
+            var rotation = getRotationDegrees($(this));
+            $.keyframe.define([
+                {
+                    name: "on-hover",
+                    "0%": { transform: `scale(100%) rotate(${rotation}deg)` },
+                    "6%": { transform: `scale(105%) rotate(${rotation}deg)` },
+                    "12%": { transform: `scale(100%) rotate(${rotation}deg)` },
+                    "18%": { transform: `scale(105%) rotate(${rotation}deg)` },
+                    "25%": { transform: `scale(100%) rotate(${rotation}deg)` },
+                    "100%": { transform: `scale(100%) rotate(${rotation}deg)` },
+                }
+            ]);
 
-//these three listeners are for the initial animation when you first land on the page
-title.onmouseover = function () {
-  if (!clicked) {
-    appbg.className = "hovered";
-    title.className = "black";
-  }
-};
+            $(this).playKeyframe({
+                name: "on-hover", // name of the keyframe you want to bind to the selected element
+                duration: "1s", // [optional, default: 0, in ms] how long you want it to last in milliseconds
+                timingFunction: "linear", // [optional, default: ease] specifies the speed curve of the animation
+                delay: "0s", //[optional, default: 0s]  how long you want to wait before the animation starts
+                iterationCount: "infinite", //[optional, default:1]  how many times you want the animation to repeat
+                direction: "normal", //[optional, default: 'normal']  which direction you want the frames to flow
+                fillMode: "forwards", //[optional, default: 'forward']  how to apply the styles outside the animation time, default value is forwards
+                complete: function () {}, //[optional] Function fired after the animation is complete. If repeat is infinite, the function will be fired every time the animation is restarted.
+            });
 
-title.onmouseout = function () {
-  if (!clicked) {
-    appbg.className = "hoverout";
-    title.className = "white";
-  }
-};
+            document.body.style.setProperty("--rot", `${rotation}deg`);
+            console.log(document.body.style.getPropertyValue("--rot"));
+        },
+        function () {
+          $(this).resetKeyframe();
+        }
+    );
 
-title.onclick = function () {
-  appbg.className = "clicked";
-  bg.className = "clicked";
-  social.className = "show";
-  bigbox.className = "show";
-  footer.className = "show";
-  scrollers.className = "show";
-  clicked = true;
-};
+    console.log(content);
 
-//used to animate on scroll: when the object observed is visible, it gains the 'trans' class, then loses it's not visible again
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("trans");
-      //social.classList.add("transup");
-      title.classList.add("transup");
-      scrollers.classList.add("transup")
-    } else {
-      entry.target.classList.remove("trans");
-      //social.classList.remove("transup");
-      title.classList.remove("transup");
+    function getRotationDegrees(obj) {
+        var matrix =
+            obj.css("-webkit-transform") ||
+            obj.css("-moz-transform") ||
+            obj.css("-ms-transform") ||
+            obj.css("-o-transform") ||
+            obj.css("transform");
+        if (matrix !== "none") {
+            var values = matrix.split("(")[1].split(")")[0].split(",");
+            var a = values[0];
+            var b = values[1];
+            var angle = Math.round(Math.atan2(b, a) * (180 / Math.PI));
+        } else {
+            var angle = 0;
+        }
+        return angle < 0 ? angle + 360 : angle;
     }
-  });
 });
-
-observer.observe(document.querySelector(".scroll"));
