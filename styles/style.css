@@ -1,191 +1,202 @@
 @import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 :root {
-  --purple-bright: #6438FF;
-  --purple-dark: #2D08B3;
-  --yellow: #FFE500;
-  --pale: #EED2CC;
-  --color: #0A8754;
-  --bg-image: url(fig/sky.jpg);
-  --rot: 0deg;
+    --background-1: #45050c;
+    --background-2: #720e07;
+    --primary: #000000;
 }
 
 body,
 html {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 @keyframes background-pan {
-  from {
-    background-position: 0% center;
-  }
-  
-  to {
-    background-position: -200% center;
-  }
+    from {
+        background-position: 0% center;
+    }
+    to {
+        background-position: -200% center;
+    }
 }
 
-@keyframes traveling-left {
-  from {
-    transform: translateX(0%);
-  }  
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-@keyframes traveling-right {
-  from {
-    transform: translateX(-50%);
-  }  
-  to {
-    transform: translateX(0%);
-  }
+@keyframes on-hover {
+    0% {
+        transform: scale(100%);
+    }
+    6% {
+        transform: scale(105%);
+    }
+    12% {
+        transform: scale(100%);
+    }
+    18% {
+        transform: scale(105%);
+    }
+    25% {
+        transform: scale(100%);
+    }
+    100% {
+        transform: scale(100%);
+    }
 }
 
 body {
-  animation: background-pan 10s linear infinite;
-  background: linear-gradient(to right, var(--purple-dark), var(--purple-bright), var(--purple-dark));
-  background-attachment: fixed;
-  overflow: hidden;
-  background-size: 200%;
-  font-family: 'Raleway', Arial, Helvetica, sans-serif;
-  color: var(--yellow);
+    animation: background-pan 10s linear infinite;
+    background: linear-gradient(
+        to right,
+        var(--background-2),
+        var(--background-1),
+        var(--background-2)
+    );
+    background-attachment: fixed;
+    overflow: hidden;
+    background-size: 200%;
+    font-family: "Raleway", Arial, Helvetica, sans-serif;
+    color: var(--primary);
+}
+
+a,
+p {
+    font-family: "Raleway", Arial, Helvetica, sans-serif;
+    color: var(--primary);
+    font-weight: 900;
+    font-style: italic;
+    text-transform: uppercase;
+    margin: 0;
+    text-align: center;
+    white-space: nowrap;
+}
+
+p {
+    font-size: 1.2em;
+}
+
+em {
+    text-decoration: none;
+    color: white;
 }
 
 #wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: absolute;
-  left: 10px;
-  right: 10px;
-  top: 10px;
-  bottom: 10px;
-  border: 5px var(--yellow) solid;
-  border-radius: 10px;
-}
-
-.names {
-  max-width: 100%;
-  height: fit-content;
-  overflow: hidden;
-}
-
-.names:first-child{
-  margin-top: 3px;
-}
-
-.marquee {
-  font-family: 'Raleway', Arial, Helvetica, sans-serif;
-  color: var(--yellow);
-  font-weight: 900;
-  font-style: italic;
-  font-size: 2rem;
-  white-space: nowrap;
-  overflow: hidden;
-  display: inline-block;
-}
-
-#names-header{
-  animation: traveling-left 120s linear infinite;
-}
-
-#names-footer{
-  animation: traveling-right 120s linear infinite;
-}
-
-.marquee span {
-  display: inline-block;
-}
-
-main {
-  border: 2px white solid;
-  width: 30%;
-  height: 80%;
-  align-self: center;
-  position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    gap: 1.5em;
 }
 
 .favicon {
-  width: 5em;
-  filter: invert();
-}
-
-#twitter {
-  left: 20%;
-  top: 12%;
-  transform: rotate(6deg);
-}
-
-#instagram {
-  left: 70%;
-  top: 55%;
-  transform: rotate(-6deg);
-}
-
-#github {
-  left: 10%;
-  top: 75%;
-  transform: rotate(6deg);
-}
-
-#thelastdrop {
-  left: 30%;
-  top: 33%;
-  transform: rotate(-10deg);
-}
-
-#thelastdrop a {
-  font-style: italic;
-  font-weight: 800;
-  font-size: 2em;
-  color: var(--yellow);
-  white-space: nowrap;
+    width: 2.5em;
 }
 
 .content {
-  display: inline-block;
-  position: absolute;
-  transform: translate(-50%, -50%);;
+    display: inline-block;
+    transition: filter 0.5s, color 0.5s;
+}
+
+.content:hover {
+    animation: on-hover 1s linear infinite;
+    transition: filter 0.5s, color 0.5s;
+}
+
+.content:hover .favicon {
+    filter: invert();
+}
+
+.content:hover a {
+    color: white;
+}
+
+#socials {
+    display: flex;
+    gap: 1.5em;
+}
+
+#links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.img-span {
+    position: relative;
+}
+
+.hidden-image {
+    width: 0;
+    transition: left 0.2s, top 0.2s, width 0.1s;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    cursor: pointer;
+}
+
+.img-span:hover .hidden-image {
+    display: block;
+    transition: left 0.2s, top 0.2s, width 0.1s;
+    filter: none;
+    z-index: 0;
+}
+
+#name .img-span:hover .hidden-image {
+    top: -200%;
+    left: 200%;
+    width: 8em;
+}
+
+#insa .img-span:hover .hidden-image {
+    top: 700%;
+    left: -1050%;
+    width: 18em;
+}
+
+#twitter .img-span:hover .hidden-image {
+    top: 200%;
+    left: 600%;
+    width: 15em;
+    border-radius: 5%;
+}
+
+#instagram .img-span:hover .hidden-image {
+    top: -1500%;
+    left: -1000%;
+    width: 15em;
+    border-radius: 5%;
+}
+
+#thelastdrop .img-span:hover .hidden-image {
+    top: -1000%;
+    left: -450%;
+    width: 25em;
 }
 
 a {
-  text-decoration: none;
+    text-decoration: none;
 }
 
-footer {
-  display: flex;
-  justify-content: center;
-}
-
-footer p {
-  margin: 0;
-  margin-bottom: 10px;
-  font-size: 0.75em;
-  color: var(--gray);
-  opacity: 75%;
-}
-
-
-
-@media screen and (max-device-width: 480px),
-  (min-width: 768px) and (max-width: 1024px) {
-
-    main {
-      width: 80%;
+@media screen and (max-device-width: 480px) {
+    #wrapper {
+        gap: 2vh;
     }
 
-    .favicon:hover {
-      animation: none;
+    .img-span:hover .hidden-image {
+        display: none;
     }
 
+    .content:hover {
+        animation: none;
+        transition: none;
+    }
 }
