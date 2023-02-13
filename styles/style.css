@@ -74,6 +74,7 @@ p {
     margin: 0;
     text-align: center;
     white-space: nowrap;
+    text-shadow: 2px 2px 0px var(--background-2);
 }
 
 p {
@@ -99,6 +100,7 @@ em {
 
 .favicon {
     width: 2.5em;
+    filter: drop-shadow(2px 2px 0px var(--background-2));
 }
 
 .content {
