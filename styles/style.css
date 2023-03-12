@@ -178,6 +178,12 @@ em {
     width: 30em;
 }
 
+#exit .img-span:hover .hidden-image {
+    top: -2000%;
+    left: 700%;
+    width: 30em;
+}
+
 a {
     text-decoration: none;
     font-size: 1.2em;
