@@ -37,7 +37,6 @@ main {
 
 #card {
     background-color: var(--dark-blue);
-    aspect-ratio: 16/9;
     padding: 1.5rem;
     position: relative;
 }
@@ -50,8 +49,6 @@ main {
 
 #card-wrapper .card-sub {
     width: 100%;
-    height: 100%;
-    /* border: 1px solid greenyellow; */
     display: flex;
     flex-direction: column;
 }
@@ -65,7 +62,7 @@ main {
 #right-card-wrapper {
     flex: 2;
     justify-content: space-between;
-    border-left: 0.1rem solid var(--pink);
+    border-left: 0.2rem solid var(--pink);
     padding-left: 0.75rem;
 }
 
@@ -73,6 +70,7 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 0.25rem;
 }
 
 #profile-pic-wrapper {
@@ -118,6 +116,10 @@ li {
     margin: 0.25rem;
 }
 
+i {
+    text-wrap: balance;
+}
+
 .emoji {
     width: 2rem;
 }
@@ -130,7 +132,7 @@ li {
 
 .dots {
     width: 100%;
-    height: 100%;
+    height: 10px;
     background: radial-gradient(circle at center, var(--pink) 0.1rem, transparent 0);
     background-size: 1rem;
     margin: 0 1rem;
@@ -143,4 +145,65 @@ a {
 a:hover {
     filter: opacity(0.8);
     transition: all 250ms;
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        background-color: var(--dark-blue);
+    }    
+
+    main {
+        width: 100%;
+    }
+    
+    #card {
+        aspect-ratio: none;
+        width: 100%;
+        height: 100%;
+    }
+
+    #card-wrapper {
+        flex-direction: column;
+        height: 100%;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+    }
+
+    p, li {
+        font-size: 1rem;
+    }
+    
+    li {
+        margin: 0.25rem;
+    }
+
+    #left-card-wrapper {
+        padding-right: 0;
+        padding-bottom: 0.75rem;
+        align-items: center;
+        gap: 0.7rem;
+    }
+
+    #right-card-wrapper {
+        border-left: none;
+        padding-left: 0;
+        border-top: 0.2rem solid var(--pink);
+        padding-top: 0.75rem;
+        height: 100%;
+        justify-content: space-evenly;
+    }
+
+    .dots {
+        height: 10px;
+    }
+
+    #profile-pic-wrapper {
+        width: 80%;
+    }
 }
